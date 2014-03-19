@@ -11,6 +11,9 @@ SUBSCRIPTION_ID="100"
 # Google Maps API Key
 GMAPS_API_KEY="crEhaMa-cHuBepr7stEP-Bru89bechaFrep7UTRA"
 
+# Install Directory
+INSTALL_DIR="/home/username/Documents/rallylogs-iplocation-map"
+
 # Locations of language runtime setup files
 # Python: virtual-env
 export VIRTUAL_ENV="/home/username/virtualenv-1.10.1/my-python/bin/activate"
@@ -38,7 +41,7 @@ CSV_FILE="${REPORT_DATE}_count_by_ipaddress.csv"
 echo "Running python to query Splunk using the following Search:"
 echo ${SEARCH_STRING}
 echo "This could take some time..."
-python ./oneshot_timebox_csv.py ${SUBSCRIPTION_ID} > ${CSV_FILE}
+python ${INSTALL_DIR}/csv2kml/oneshot_timebox_csv.py ${SUBSCRIPTION_ID} > ${CSV_FILE}
 
 # Template values
 TEMPLATE_DATE="YYYYMMDD"
@@ -65,7 +68,7 @@ KML_OUT_MINOR="${FILE_PREFIX}_minor.kml"
 PROCESSED_CSV="${FILE_PREFIX}_noquotes.csv"
 CSV_HTML="${FILE_PREFIX}_table.html"
 OUTPUT_HTML="${FILE_PREFIX}_geoIPReport.html"
-OUTPUT_DIRECTORY_HTML="../html"
+OUTPUT_DIRECTORY_HTML="${INSTALL_DIR}/html"
 OUTPUT_DIRECTORY_KML="${OUTPUT_DIRECTORY_HTML}/kml"
 
 # SCP Parameters
