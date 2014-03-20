@@ -12,7 +12,7 @@ SUBSCRIPTION_ID="100"
 GMAPS_API_KEY="crEhaMa-cHuBepr7stEP-Bru89bechaFrep7UTRA"
 
 # Install Directory
-INSTALL_DIR="/home/username/Documents/rallylogs-iplocation-map"
+INSTALL_DIR="/home/username/Documents/rallylog-iplocation-map"
 
 # Locations of language runtime setup files
 # Python: virtual-env
@@ -21,6 +21,8 @@ export PYTHONPATH="/home/username/Documents/splunk-sdk-python-1.2.1/"
 
 # Perl: perlbrew
 export PERLBREW="/home/username/perl5/perlbrew/etc/bashrc"
+PERLBREW_BIN="/home/username/perl5/perlbrew/perls/perl-5.18.2/bin"
+PERL=${PERLBREW_BIN}/perl
 
 # Setup language runtimes
 source ${VIRTUAL_ENV}
@@ -47,7 +49,7 @@ python ${INSTALL_DIR}/csv2kml/oneshot_timebox_csv.py ${SUBSCRIPTION_ID} > ${CSV_
 TEMPLATE_DATE="YYYYMMDD"
 
 # Template HTML file location
-TEMPLATE_HTML="template.html"
+TEMPLATE_HTML="${INSTALL_DIR}/csv2kml/template.html"
 
 TEMPLATE_DATE_RANGE="Month Day PP - QQ, YYYY"
 TEMPLATE_SUBSCRIPTION_ID="SUBSCRIPTION_ID_VALUE"
@@ -63,11 +65,11 @@ FQ_SERVER_URL="https:\/\location.f4tech.com\/username\/reportdir\/"
 
 # File outputs
 FILE_PREFIX=${REPORT_DATE}
-KML_OUT_MAJOR="${FILE_PREFIX}_major.kml"
-KML_OUT_MINOR="${FILE_PREFIX}_minor.kml"
-PROCESSED_CSV="${FILE_PREFIX}_noquotes.csv"
-CSV_HTML="${FILE_PREFIX}_table.html"
-OUTPUT_HTML="${FILE_PREFIX}_geoIPReport.html"
+KML_OUT_MAJOR="${INSTALL_DIR}/csv2kml/${FILE_PREFIX}_major.kml"
+KML_OUT_MINOR="${INSTALL_DIR}/csv2kml/${FILE_PREFIX}_minor.kml"
+PROCESSED_CSV="${INSTALL_DIR}/csv2kml/${FILE_PREFIX}_noquotes.csv"
+CSV_HTML="${INSTALL_DIR}/csv2kml/${FILE_PREFIX}_table.html"
+OUTPUT_HTML="${INSTALL_DIR}/csv2kml/${FILE_PREFIX}_geoIPReport.html"
 OUTPUT_DIRECTORY_HTML="${INSTALL_DIR}/html"
 OUTPUT_DIRECTORY_KML="${OUTPUT_DIRECTORY_HTML}/kml"
 
@@ -90,8 +92,8 @@ cat ${CSV_FILE} | sed -e 's/"//g' -e '/^\s*$/d' | tail -n +2 > ${PROCESSED_CSV}
 # Run GeoIP Perl Script
 echo "Processing IP Address data to KML..."
 
-perl ip2kml_major.pl -i ${PROCESSED_CSV} -o ${KML_OUT_MAJOR} -s col:1 -c col:2 -d "\s" -n "\s" -e sep:, # > /dev/null 2>&1
-perl ip2kml_minor.pl -i ${PROCESSED_CSV} -o ${KML_OUT_MINOR} -s col:1 -c col:2 -d "\s" -n "\s" -e sep:, # > /dev/null 2>&1
+${PERL} ${INSTALL_DIR}/csv2kml/ip2kml_major.pl -i ${PROCESSED_CSV} -o ${KML_OUT_MAJOR} -s col:1 -c col:2 -d "\s" -n "\s" -e sep:, # > /dev/null 2>&1
+${PERL} ${INSTALL_DIR}/csv2kml/ip2kml_minor.pl -i ${PROCESSED_CSV} -o ${KML_OUT_MINOR} -s col:1 -c col:2 -d "\s" -n "\s" -e sep:, # > /dev/null 2>&1
 
 echo "KML Output File: ${KML_OUT}"
 
@@ -99,7 +101,7 @@ echo "Processing summary HTML Table..."
 
 cat ${PROCESSED_CSV} | \
     sort --field-separator="," --key=2,1 -n -r | \
-    awk -F, -f csv2html.awk > ${CSV_HTML}
+    awk -F, -f ${INSTALL_DIR}/csv2kml/csv2html.awk > ${CSV_HTML}
 
 # Convert HTML Template using current values
 echo "Preparing Report HTML Map...."
