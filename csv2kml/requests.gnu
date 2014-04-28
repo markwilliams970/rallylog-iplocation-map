@@ -4,7 +4,7 @@ set timefmt '%Y-%m-%d
 set xdata time
 set datafile sep ','
 set grid layerdefault   linetype 0 linewidth 1.000,  linetype 0 linewidth 1.000
-set title "Subscription 2028 Rally Usage"
+set title "Subscription 100 Rally Usage"
 set ylabel "Requests by Site"
 set lmargin  16
 set rmargin  9
