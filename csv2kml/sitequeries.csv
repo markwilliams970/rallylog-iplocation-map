@@ -1,0 +1,6 @@
+Site,Query
+Site1,search sourcetype=alm-spans requestSpan.stack=prod subscriptionId=100 (javaRequestSpan.remoteHost=10.0.210.104 OR javaRequestSpan.remoteHost=10.0.210.105) | timechart count
+Site2,search sourcetype=alm-spans requestSpan.stack=prod subscriptionId=100 (javaRequestSpan.remoteHost=10.0.220.100) | timechart count
+Site3,search sourcetype=alm-spans requestSpan.stack=prod subscriptionId=100 (javaRequestSpan.remoteHost=10.0.230.120 OR javaRequestSpan.remoteHost=10.0.230.130 OR javaRequestSpan.remoteHost=202.76.242.47 OR javaRequestSpan.remoteHost=202.76.242.48 OR javaRequestSpan.remoteHost=202.76.243.10) | timechart count
+Site4,search sourcetype=alm-spans requestSpan.stack=prod subscriptionId=100 (javaRequestSpan.remoteHost=10.0.240.120) | timechart count
+All, search sourcetype=alm-spans requestSpan.stack=prod subscriptionId=100 | timechart count
