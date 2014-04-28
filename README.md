@@ -4,6 +4,7 @@ rallylog-iplocation-map
 A combination of scripts that create a Google Map of Rally Usage by IP address location for a particular Rally Subscription.
 
 ![Sample IP Location Map](https://raw.github.com/markwilliams970/rallylog-iplocation-map/master/img/screenshot.png)
+![Sample Requests Graph](https://raw.githubusercontent.com/markwilliams970/rallylog-iplocation-map/master/html/img/requests.png)
 
 Dependencies:
 
@@ -15,4 +16,4 @@ Dependencies:
 	2. Geo::IP::PurePerl
 	3. HTML::Entities
 	4. [GeoIP Cities database](http://dev.maxmind.com/geoip/legacy/install/city/)
- 
+3. GnuPlot (tested using [GnuPlot](http://www.gnuplot.info/) 4.6 patchlevel 5) 
