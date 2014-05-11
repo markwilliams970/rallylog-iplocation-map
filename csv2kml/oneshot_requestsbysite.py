@@ -59,7 +59,9 @@ def main():
     max_records =  10000
     
     # site_queries
+    install_dir = "/home/username/Documents/Github/rallylog-iplocation-map/csv2kml"
     site_queries_csv = 'sitequeries.csv'
+    fq_site_queries_csv = install_dir + "/" + site_queries_csv
 
     # Column name to index mapping
     column_name_index_lookup = {
@@ -67,7 +69,7 @@ def main():
         1 : 'Query'
     }
 
-    csvfile  = open(site_queries_csv, "rb")
+    csvfile  = open(fq_site_queries_csv, "rb")
     queries_reader = csv.reader(csvfile)
 
     sitename_to_query_lookup = {}

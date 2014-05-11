@@ -45,7 +45,7 @@ CSV_FILE="${REPORT_DATE}_count_by_ipaddress.csv"
 # Run python script to poll IP/Count information from splunk
 echo "Running python to query Splunk for overall requests by unique IP Address..."
 echo "This could take some time..."
-python ${INSTALL_DIR}/csv2kml/oneshot_timebox_csv.py ${SUBSCRIPTION_ID} > ${CSV_FILE}
+python ${INSTALL_DIR}/csv2kml/oneshot_timebox_csv.py ${SUBSCRIPTION_ID} > ${INSTALL_DIR}/csv2kml/${CSV_FILE}
 
 # Template values
 TEMPLATE_DATE="YYYYMMDD"
@@ -92,7 +92,7 @@ echo "CSV Input File: ${CSV_FILE}"
 echo "Pre-processing CSV..."
 
 # Remove empty lines and un-needed double-quotes, skip first row
-cat ${CSV_FILE} | sed -e 's/"//g' -e '/^\s*$/d' | tail -n +2 > ${PROCESSED_CSV}
+cat ${INSTALL_DIR}/csv2kml/${CSV_FILE} | sed -e 's/"//g' -e '/^\s*$/d' | tail -n +2 > ${PROCESSED_CSV}
 
 # Run GeoIP Perl Script
 echo "Processing IP Address data to KML..."
@@ -157,8 +157,8 @@ SITE_CSV_FILE_PREFIX="${REPORT_DATE}_requests_by_site"
 SITE_CSV_FILE="${REPORT_DATE}_requests_by_site.csv"
 
 # Delete file if it exists
-if [ -e ${SITE_CSV_FILE} ]; then
-	rm ${SITE_CSV_FILE}
+if [ -e ${INSTALL_DIR}/csv2kml/${SITE_CSV_FILE} ]; then
+	rm ${INSTALL_DIR}/csv2kml/${SITE_CSV_FILE}
 fi
 
 # Run python script to poll IP/Count information from splunk
