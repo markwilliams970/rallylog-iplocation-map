@@ -6,6 +6,8 @@ A combination of scripts that create a Google Map of Rally Usage by IP address l
 ![Sample IP Location Map](https://raw.github.com/markwilliams970/rallylog-iplocation-map/master/img/screenshot.png)
 ![Sample Requests Graph](https://raw.githubusercontent.com/markwilliams970/rallylog-iplocation-map/master/html/img/requests.png)
 
+[Example Map](https://people.rallydev.com/markwilliams/rally1-b1f17b6/geoIPReport.html)
+
 Dependencies:
 
 1. Python (tested using [Virtual Env](http://www.virtualenv.org/en/latest/) and Python 2.7)
